@@ -1,0 +1,49 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: "study"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5432:5432"
+  app1:
+    container_name: app1
+    image: martell805/rksp5app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/study
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  app2:
+    container_name: app2
+    image: martell805/rksp5app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/study
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  app3:
+    container_name: app3
+    image: martell805/rksp5app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/study
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  app4:
+    container_name: app4
+    image: martell805/rksp5app
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/study
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
